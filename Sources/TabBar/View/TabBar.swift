@@ -98,16 +98,17 @@ public struct TabBar<TabItem: Tabbable, Content: View>: View {
     }
     
     public var body: some View {
-        ZStack {
-            self.content
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .environmentObject(self.selectedItem)
-            
-            GeometryReader { geometry in
+        GeometryReader { mainGeometry in
+            ZStack {
+                self.content
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .environmentObject(self.selectedItem)
+                    .padding(.bottom, self.visibility == .visible ? 50 : 0)
+                
                 VStack {
                     Spacer()
                     
-                    self.tabBarStyle.tabBar(with: geometry) {
+                    self.tabBarStyle.tabBar(with: mainGeometry) {
                         .init(self.tabItems)
                     }
                 }
