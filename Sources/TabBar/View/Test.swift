@@ -5,9 +5,10 @@ public struct ButtonTabBarStyle: TabBarStyle {
     
     public func tabBar(with geometry: GeometryProxy, itemsContainer: @escaping () -> AnyView) -> some View {
         itemsContainer()
+            .frame(height: 50)
             .padding(.top, 12)
             .padding(.horizontal, 20)
-            .padding(.bottom, geometry.safeAreaInsets.bottom + 12)
+            .padding(.bottom, geometry.safeAreaInsets.bottom)
             .background(.ultraThinMaterial)
     }
 }
@@ -95,8 +96,9 @@ private enum DemoTab: Tabbable {
     @Previewable @State var selectedTab: DemoTab = .one
     
     TabBar(selection: $selectedTab) {
-        List(0..<30) { index in
-            Text("Index: \(index)")
+        Form {
+            Text("Hello")
+            Text("Cool")
         }
         .tabItem(for: DemoTab.one)
         
@@ -105,18 +107,16 @@ private enum DemoTab: Tabbable {
         }
         .tabItem(for: DemoTab.two)
 
-        List(0..<30) { index in
-            Text("Index: \(index)")
-        }
-        .tabItem(for: DemoTab.three)
+        Rectangle()
+            .tabItem(for: DemoTab.three)
 
         List(0..<30) { index in
-            Text("Index: \(index)")
+            Text("Index shit: \(index)")
         }
         .tabItem(for: DemoTab.four)
 
         List(0..<30) { index in
-            Text("Index: \(index)")
+            Text("Index fuck: \(index)")
         }
         .tabItem(for: DemoTab.five)
     }
